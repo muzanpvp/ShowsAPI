@@ -6,6 +6,7 @@ using showsapi.Interfaces;
 using showsapi.Context;
 using showsapi.Models;
 using Microsoft.EntityFrameworkCore;
+using showsapi.ViewModels;
 
 namespace showsapi.Services
 {
@@ -22,22 +23,27 @@ namespace showsapi.Services
             _showapicontext.SaveChanges();
             return shows;
         }
-        public async Task<Shows> update(int id){
-            var show =_showapicontext.Shows.Find(id);
-            if(show == null){
+
+        public async Task<Shows> update(Shows shows, int id){
+            shows.Id = id;
+            if(shows == null){
                 throw new Exception("Show não encontrado, insira um id válido");
             }
-            _showapicontext.Shows.Update(show);
-            return show;
+            _showapicontext.Shows.Update(shows);
+            await _showapicontext.SaveChangesAsync();
+            return shows;
         }
+
         public async Task<bool> delete(int id){
             var show =_showapicontext.Shows.Find(id);
             if(show == null){
                 throw new Exception("Show não encontrado, insira um id válido");
             }
             _showapicontext.Shows.Remove(show);
+            await _showapicontext.SaveChangesAsync();
             return true;
         }
+
         public async Task<Shows> get(int id){
          var show = _showapicontext.Shows.Find(id);
          if(show == null){
@@ -45,6 +51,7 @@ namespace showsapi.Services
          }
           return show;
         }
+
         public async Task<IEnumerable<Shows>> getAll(){
             return _showapicontext.Shows.AsNoTracking().ToList();
         }

@@ -64,3 +64,4 @@
 /home/muzanpvp/Documentos/Estudos/ShowsAPI/ShowsAPI/showsapi/obj/Debug/net8.0/showsapi.pdb
 /home/muzanpvp/Documentos/Estudos/ShowsAPI/ShowsAPI/showsapi/obj/Debug/net8.0/showsapi.genruntimeconfig.cache
 /home/muzanpvp/Documentos/Estudos/ShowsAPI/ShowsAPI/showsapi/obj/Debug/net8.0/ref/showsapi.dll
+/home/muzanpvp/Documentos/Estudos/ShowsAPI/ShowsAPI/showsapi/obj/Debug/net8.0/showsapi.sourcelink.json

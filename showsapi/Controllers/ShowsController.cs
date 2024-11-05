@@ -26,8 +26,8 @@ namespace showsapi.Controllers
         }
 
         [HttpPost]
-        [Route("id")]
-        public async Task<IActionResult> Add(ShowsViewModel showsviewmodel){
+        [Route("new")]
+        public async Task<IActionResult> Add([FromBody] ShowsViewModel showsviewmodel){
             
             var mapper = _mapper.Map<Shows>(showsviewmodel);
             await _showsinterface.create(mapper);
@@ -37,7 +37,7 @@ namespace showsapi.Controllers
         }
 
         [HttpGet]
-        [Route("api/Shows")]
+        [Route("all")]
         public async Task<IActionResult> GetAll(){
             var shows = await _showsinterface.getAll();  
             if(shows != null){ 
@@ -48,14 +48,15 @@ namespace showsapi.Controllers
         }
 
         [HttpPut]
-        [Route("Update/id")]
-        public async Task<IActionResult> Update(int id){
-            var shows = await _showsinterface.update(id);
-            return Ok();
+        [Route("{id}/update")]
+        public async Task<IActionResult> Update(ShowsViewModel shows,int id){
+            var mapper = _mapper.Map<Shows>(shows);
+            var show = await _showsinterface.update(mapper,id);
+            return Ok(show);
         }
 
         [HttpDelete]
-        [Route("Delete/id")]
+        [Route("{id}/delete")]
         public async Task<IActionResult> Delete(int id){
             var shows = await _showsinterface.delete(id);
             if(_showsinterface.get(id) != null)
@@ -67,7 +68,7 @@ namespace showsapi.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public async Task<IActionResult> Get(int id){
             var show = await _showsinterface.get(id);
             return Ok(show);
