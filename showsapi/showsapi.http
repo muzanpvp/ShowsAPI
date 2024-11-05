@@ -1,0 +1,6 @@
+@showsapi_HostAddress = http://localhost:5124
+
+GET {{showsapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
