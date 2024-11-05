@@ -1,15 +1,13 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace showsapi.Models;
-
-[Table("usuario")]
-public class Usuario
+namespace showsapi.ViewModels
 {
+    public class UsuarioViewModel
+    {
     [Key]
     public int Id { get; set;}
     [Required]
@@ -20,4 +18,5 @@ public class Usuario
     public string Senha { get; set;}
     [Required]
     public DateTime Data_nascimento { get; set;}
+    }
 }

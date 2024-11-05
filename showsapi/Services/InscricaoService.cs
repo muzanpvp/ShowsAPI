@@ -22,8 +22,8 @@ namespace showsapi.Services
             await _showapicontext.SaveChangesAsync();
             return inscricao;
         }
-        public async Task<Inscricao> update(int id){
-            var inscricao = await _showapicontext.Inscricao.FindAsync(id);
+        public async Task<Inscricao> update(Inscricao inscricao,int id){
+            inscricao.Id = id;
             if(inscricao == null){
             throw new Exception("Inscrição não existe");
             }

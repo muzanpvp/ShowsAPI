@@ -9,7 +9,7 @@ namespace showsapi.Interfaces
     public interface IInscricaoInterface 
     {
         Task<Inscricao> create(Inscricao inscricao);
-        Task<Inscricao> update(int id);
+        Task<Inscricao> update(Inscricao inscricao,int id);
         Task<bool> delete(int id);
         Task<Inscricao> get(int id);
         Task<IEnumerable<Inscricao>> getAll();

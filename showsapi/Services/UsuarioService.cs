@@ -17,32 +17,36 @@ namespace showsapi.Services
             _showapicontext = showapicontext;
         }
 
-        public async Task<Usuario> create(Usuario Usuario){
-            _showapicontext.Usuario.Add(Usuario);
+        public async Task<Usuario> create(Usuario usuario){
+            _showapicontext.Usuario.Add(usuario);
             await _showapicontext.SaveChangesAsync();
-            return Usuario;
+            return usuario;
         }
-        public async Task<Usuario> update(int id){
-            var Usuario = await _showapicontext.Usuario.FindAsync(id);
-            if(Usuario == null){
+        public async Task<Usuario> update(Usuario usuario,int id){
+            usuario.Id = id;
+            if(usuario == null){
             throw new Exception("Usuario não existe");
             }
-            _showapicontext.Usuario.Update(Usuario);   
+            _showapicontext.Usuario.Update(usuario);   
             await _showapicontext.SaveChangesAsync();
-            return Usuario;
+            return usuario;
             
         }  
         public async Task<bool> delete(int id){
-            var Usuario = await _showapicontext.Usuario.FindAsync(id);
-            if(Usuario == null){
+            var usuario = await _showapicontext.Usuario.FindAsync(id);
+            if(usuario == null){
             throw new Exception("Usuario não existe");
             }
-            _showapicontext.Usuario.Remove(Usuario);
+            _showapicontext.Usuario.Remove(usuario);
             await _showapicontext.SaveChangesAsync();
             return false;
         }
         public async Task<Usuario> get(int id){
-            return _showapicontext.Usuario.Find(id);
+            var usuario =  _showapicontext.Usuario.Find(id);
+            if(usuario == null){
+                throw new Exception("O usuário não existe");
+            }
+            return usuario;
         }
         public async Task<IEnumerable<Usuario>> getAll(){
             return _showapicontext.Usuario.AsNoTracking().ToList();

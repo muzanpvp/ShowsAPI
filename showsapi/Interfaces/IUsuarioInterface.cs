@@ -9,7 +9,7 @@ namespace showsapi.Interfaces
     public interface IUsuarioInterface
     {
         Task<Usuario> create(Usuario usuario);
-        Task<Usuario> update(int id);
+        Task<Usuario> update(Usuario usuario, int id);
         Task<bool> delete(int id);
         Task<Usuario> get(int id);
         Task<IEnumerable<Usuario>> getAll();
